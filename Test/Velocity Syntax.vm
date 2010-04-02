@@ -1296,6 +1296,16 @@ Outer : inner : outerlala
 	</div>
 	<div id="footer">
 		<div class="xright">
+			<!--
+				Thanks! Jason Schock savings.com
+			-->
+			<a class="category" href="/blah/$!thing.getPrimaryCategory().property-page.html" title="$!{thing.getPrimaryCategory().property}">${thing.getPrimaryCategory().property}</a>##
+			<a class="category" href="/blah/$!{thing.getPrimaryCategory().property}-page.html" title="$!{thing.getPrimaryCategory().property}">${thing.getPrimaryCategory().property}</a>##
+			<a class="category" href="/blah/$!{thing.getPrimaryCategory().property}-page.html" title="$!{thing.getPrimaryCategory().property}">${thing.getPrimaryCategory().property}</a>##
+			<a class="category" href="/blah/$!{thing.getPrimaryCategory().property}-page.html" title="$!{thing.getPrimaryCategory().property}">${thing.getPrimaryCategory().property}</a>##
+			<a class="category" href="/blah/$!{thing.getPrimaryCategory().property}-page.html" title="$!{thing.getPrimaryCategory().property}">${thing.getPrimaryCategory().property}</a>##
+			
+			
 			© 2000-2007 The Apache Software Foundation Last Published: 2007-05-02 07:39:31
 		</div>
 		<div class="clear">

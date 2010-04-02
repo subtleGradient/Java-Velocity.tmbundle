@@ -1,0 +1,149 @@
+<a class="category" href="/blah/$!{thing.getPrimaryCategory( 'text.foo' 'bundle' 9 $desc ).property}-page.html" title="$!{thing.getPrimaryCategory().property}">${thing.getPrimaryCategory().property}</a>##
+
+<p>
+#set( $demo = $text.demo )
+$demo.thisPage.insert("#doclink( 'ResourceTool' true )").  This tool
+is similar to the <a href="$link.relative('link.vm')">LinkTool</a> in that most methods
+return a new object that has mostly the same methods as the original, allowing you
+to build up parameters elegantly and simply, rather than try to remember how to use
+methods with many parameters that must be in a specific order.  So, you can access a
+resource with the key 'hello.whoever' in the 'otherStuff' bundle with one message
+argument like this:
+<pre>
+  ${esc.d}text.hello.whoever.bundle('otherStuff').insert('World')
+</pre>
+instead of like this:
+<pre>
+  ${esc.d}text.get('hello.whoever','otherStuff', $null, 'World')
+</pre>
+While the former is somewhat longer, it is much more understandable and flexible.
+</p>
+
+#demoTableStart()
+
+#set( $desc = 'Returns the resource with the specified name, if it exists.' )
+#demo1( 'text' 'get' 9 $desc )
+
+#set( $desc = 'Returns a list of the available keys.' )
+#demo( 'text' 'hello.keys' $desc )
+
+#set( $desc = 'Returns a new $text that will search only the specified bundle (if it exists) for the resource "foo".' )
+#demo1( 'text.foo' 'bundle' 9 $desc )
+
+#set( $quote = '' )
+#set( $desc = 'Returns a new $text that will try to find the resource "foo" for the specified Locale.' )
+#demo1( 'text.foo' 'locale' 9 $desc )
+
+#set( $quote = '"' )
+#set( $desc = 'Returns the resource "hello.whoever" with the specified value inserted.' )
+#demo1( 'text.hello.whoever' 'insert' 9 $desc )
+
+#set( $desc = 'Returns the resource "baz" with the specified values inserted.' )
+#demo2( 'text.baz' 'insert' 9 $desc )
+
+#demoCustom( 'text' )
+</table>
+
+<div align="center">
+  <a name="fullDemo"><h3>$demo.mainExampleHeader</h3></a>
+<form method="post" action="$link.self.anchor('fullDemo')">
+<textarea name="demo" rows="6" cols="65">##
+#if( $params.demo )##
+$params.demo##
+#else##
+${esc.d}text.foo
+${esc.d}text.hello.whoever
+${esc.d}text.hello.whoever.insert(${esc.d}text.world)
+${esc.d}text.bundle('otherStuff').foo##
+#end##
+</textarea>
+  <br>
+  <input type="submit" value="$demo.try">
+  #if( $params.layout )
+  <input type="hidden" name="layout" value="$params.layout">
+  #end
+</form>
+
+#if( $params.demo )
+$demo.mainResultsIntro:
+<pre>
+  $render.eval($params.demo)
+</pre>
+#end
+</div>
+
+
+#*
+Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
+    
+    doesn't seem to like a single apostrophe in comments
+
+*#
+
+
+<p>
+#set( $demo = $text.demo )
+$demo.thisPage.insert("#doclink( 'MathTool' true )").
+</p>
+
+#demoTableStart()
+
+#set( $desc = 'Returns the sum of the numbers or <code>null</code> if they are invalid.' )
+#demo2( 'math' 'add' 3 $desc)
+
+#set( $desc = 'Returns the difference of the numbers or <code>null</code> if they are invalid.' )
+#demo2( 'math' 'sub' 3 $desc)
+
+#set( $desc = 'Returns the product of the numbers or <code>null</code> if they are invalid.' )
+#demo2( 'math' 'mul' 3 $desc)
+
+#set( $desc = 'Returns the quotient of the numbers or <code>null</code> if they are invalid.' )
+#demo2( 'math' 'div' 3 $desc)
+
+#set( $desc = 'Returns the first number raised to the power of the second or <code>null</code> if they are invalid.' )
+#demo2( 'math' 'pow' 3 $desc)
+
+#set( $desc = 'Returns the result of performing integer division on the operands or <code>null</code> if they are invalid.' )
+#demo2( 'math' 'idiv' 3 $desc)
+
+#set( $desc = 'Returns the result of performing integer modulus on the operands or <code>null</code> if they are invalid.' )
+#demo2( 'math' 'mod' 3 $desc)
+
+#set( $desc = 'Returns the largest of the numbers or <code>null</code> if they are invalid.' )
+#demo2( 'math' 'max' 3 $desc)
+
+#set( $desc = 'Returns the smallest of the numbers or <code>null</code> if they are invalid.' )
+#demo2( 'math' 'min' 3 $desc)
+
+#set( $desc = 'Returns the absolute value of the number or <code>null</code> if it is invalid.' )
+#demo2( 'math' 'abs' 3 $desc)
+
+#set( $desc = 'Returns the smallest integer that is not less than the given number or <code>null</code> if it is invalid.' )
+#demo1( 'math' 'ceil' 3 $desc)
+
+#set( $desc = 'Returns the integer portion of the given number or <code>null</code> if it is invalid.' )
+#demo1( 'math' 'floor' 3 $desc)
+
+#set( $desc = 'Returns the given number rounded to the nearest whole Integer or <code>null</code> if it is invalid.' )
+#demo1( 'math' 'found' 3 $desc)
+
+#set( $desc = "Rounds a number to the specified number of decimal places. This is particulary useful for simple display formatting. If you want to round an number to the nearest integer, it is better to use ${esc.d}math.round(), as that will return an Integer rather than a Double." )
+#demo2( 'math' 'roundTo' 2 $desc )
+
+#set( $desc = 'Returns a pseudo-random Double greater than or equal to 0.0 and less than 1.0' )
+#demo( 'math' 'random' $desc )
+
+#set( $desc = 'This returns a random Number within the specified range.  The returned value will be greater than or equal to the first number and less than the second number.  If both arguments are whole numbers then the returned number will also be, otherwise a Double will be returned.' )
+#demo2( 'math' 'random' 3 $desc )
+
+#set( $desc = 'Converts an object with a numeric value into an Integer. Valid formats are Number or a string representation of a number.' )
+#demo1( 'math' 'toInteger' 3 $desc )
+
+#set( $desc = 'Converts an object with a numeric value into a Double. Valid formats are Number or a string representation of a number.' )
+#demo1( 'math' 'toDouble' 3 $desc )
+
+#set( $desc = 'Converts an object with a numeric value into a Number. Valid formats are Number or a string representation of a number.' )
+#demo1( 'math' 'toNumber' 3 $desc )
+
+#demoCustom( 'math' )
+</table>
